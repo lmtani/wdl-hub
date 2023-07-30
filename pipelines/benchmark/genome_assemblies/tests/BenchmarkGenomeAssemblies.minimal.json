@@ -1,7 +1,9 @@
 {
+  "BenchmarkGenomeAssemblies.quast_reference_accession": "GCA_000214015.2",
   "BenchmarkGenomeAssemblies.accessions": [
-    "GCA_000214015.2",
-    "GCA_905339685.1"
+    "GCA_905339685.1",
+    "GCA_905339615.1",
+    "GCA_905339545.1"
   ],
   "BenchmarkGenomeAssemblies.compleasm_lineage": "chlorophyta_odb10",
   "BenchmarkGenomeAssemblies.compleasm_extra_args": "--mode lite"
