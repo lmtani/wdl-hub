@@ -1,0 +1,5 @@
+{
+  "BenchmarkGenomeAssemblies.accessions": ["a", "b", "c"],
+  "BenchmarkGenomeAssemblies.busco_lineage": "a-busco-compatible-lineage-string",
+  "BenchmarkGenomeAssemblies.stub": true
+}

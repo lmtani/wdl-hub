@@ -5,6 +5,9 @@ task FetchNCBI {
     input {
         Array[String] accessions
         String your_email = "your.email@domain.com"
+
+        String container = "quay.io/biocontainers/biopython:1.75"
+        Int disk_size = 10
         Boolean stub = false
     }
 
@@ -49,8 +52,8 @@ task FetchNCBI {
     runtime {
         cpu: 1
         memory: "2 GB"
-        disk: "local-disk 10 HDD"
-        docker: "quay.io/biocontainers/biopython:1.75"
+        disk: "local-disk ~{disk_size} HDD"
+        docker: container
     }
 
     output {

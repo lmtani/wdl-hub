@@ -3,6 +3,10 @@ version 1.0
 task RunWget {
     input {
         String file_remote_url
+        String extra_args = ""
+
+        String container = "quay.io/biocontainers/wget:1.20.1"
+        Int disk_size = 10
         Boolean stub = false
     }
 
@@ -14,14 +18,14 @@ task RunWget {
             exit 0
         fi
 
-        wget ~{file_remote_url}
+        wget ~{extra_args} ~{file_remote_url}
     >>>
 
     runtime {
         cpu: 1
         memory: "2 GB"
-        docker: "quay.io/biocontainers/wget:1.20.1"
-        disk: "local-disk 10 HDD"
+        docker: container
+        disk: "local-disk ~{disk_size} HDD"
     }
 
     output {

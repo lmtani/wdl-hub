@@ -1,10 +1,24 @@
 repos:
-- repo: local
-  hooks:
-  - id: miniwdl-check
-    name: miniwdl check
-    language: system
-    files: ".+\\.wdl"
-    verbose: true
-    entry: miniwdl
-    args: [check]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: requirements-txt-fixer
+      - id: trailing-whitespace
+
+  - repo: local
+    hooks:
+    - id: miniwdl-check
+      name: miniwdl check
+      language: system
+      files: ".+\\.wdl"
+      verbose: true
+      entry: miniwdl
+      args: [check]

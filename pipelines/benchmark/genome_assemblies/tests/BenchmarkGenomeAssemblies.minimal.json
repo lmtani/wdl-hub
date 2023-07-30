@@ -1,0 +1,8 @@
+{
+  "BenchmarkGenomeAssemblies.accessions": [
+    "GCA_000214015.2",
+    "GCA_905339685.1"
+  ],
+  "BenchmarkGenomeAssemblies.compleasm_lineage": "chlorophyta_odb10",
+  "BenchmarkGenomeAssemblies.compleasm_extra_args": "--mode lite"
+}

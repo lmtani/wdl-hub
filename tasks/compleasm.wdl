@@ -1,10 +1,12 @@
 version 1.0
 
 
-task MinibuscoDownload {
+task CompleasmDownload {
     input {
         String lineage  # BUSCO compatible lineage name
         String lineage_dir = "mb_downloads"
+        String container = "quay.io/biocontainers/compleasm:0.2.2--pyh7cba7a3_0"
+        Int disk_size = 10
         Boolean stub = false
     }
 
@@ -14,15 +16,15 @@ task MinibuscoDownload {
             exit 0
         fi
 
-        minibusco download --library_path ~{lineage_dir} ~{lineage}
+        compleasm download --library_path ~{lineage_dir} ~{lineage}
         tar -czvf ~{lineage}.tar.gz ~{lineage_dir}
     >>>
 
     runtime {
         cpu: 1
         memory: "2 GB"
-        docker: "quay.io/biocontainers/minibusco:0.2.1--pyh7cba7a3_0"
-        disk: "local-disk 10 HDD"
+        docker: container
+        disk: "local-disk ~{disk_size} HDD"
     }
 
     output {
@@ -31,7 +33,7 @@ task MinibuscoDownload {
 }
 
 
-task MinibuscoRun {
+task CompleasmRun {
     input {
         File fasta
         File lineage_tar
@@ -40,6 +42,9 @@ task MinibuscoRun {
         Int threads = 4
         Int memory = 12
         String lineage_dir = "mb_downloads"
+        String extra_args = ""
+        String container = "quay.io/biocontainers/compleasm:0.2.2--pyh7cba7a3_0"
+        Int disk_size = 10
         Boolean stub = false
     }
 
@@ -51,17 +56,23 @@ task MinibuscoRun {
         fi
 
         tar -xf ~{lineage_tar}
-        minibusco run --library_path ~{lineage_dir} -a ~{fasta} -t ~{threads} -l ~{lineage} -o ~{output_directory}
+        compleasm run --library_path ~{lineage_dir} \
+                    --assembly_path ~{fasta} \
+                    --threads ~{threads} \
+                    --lineage ~{lineage} \
+                    --output_dir ~{output_directory} \
+                    ~{extra_args}
     >>>
 
     runtime {
         cpu: threads
         memory: memory
-        docker: "quay.io/biocontainers/minibusco:0.2.1--pyh7cba7a3_0"
-        disk: "local-disk 10 HDD"
+        docker: container
+        disk: "local-disk ~{disk_size} HDD"
     }
 
     output {
-        File report = "~{output_directory}/summary.txt"
+        File summary = "~{output_directory}/summary.txt"
+        File full_table = "~{output_directory}/~{lineage}/full_table.tsv"
     }
 }
