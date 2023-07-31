@@ -1,0 +1,12 @@
+# for use with conda (https://docs.conda.io/en/latest/miniconda.html):
+# conda env create -f environment.yml
+name: "wdl-hub"
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - pip=22
+  - python=3.10
+  - miniwdl
+  - ruamel.yaml
+  - pytest-workflow

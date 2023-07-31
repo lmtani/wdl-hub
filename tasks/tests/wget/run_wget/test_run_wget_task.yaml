@@ -1,0 +1,6 @@
+- name: Check if stub of RunWget produces expected output
+  tags:
+  - runwget
+  command: miniwdl run --task RunWget -i tasks/tests/wget/run_wget/inputs.json tasks/wget.wdl
+  files:
+  - path: _LAST/out/downloaded_file/<complete-here>

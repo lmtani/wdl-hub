@@ -1,0 +1,7 @@
+- name: Check if CompleasmDownload produces the expected outputs
+  tags:
+  - compleasmdownload
+  command: miniwdl run --task CompleasmDownload -i tasks/tests/compleasm_download/inputs.json
+    tasks/compleasm.wdl
+  files:
+  - path: _LAST/out/lineage_tar/busco-compatible-lineage.tar.gz

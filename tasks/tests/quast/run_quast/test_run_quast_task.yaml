@@ -1,0 +1,7 @@
+- name: Check if RunQuast produces the expected outputs
+  tags:
+  - runquast
+  command: miniwdl run --task RunQuast -i tasks/tests/run_quast/inputs.json tasks/quast.wdl
+  files:
+  - path: _LAST/out/RunQuast/output_tar_dir
+  - path: _LAST/out/RunQuast/report_tsv
