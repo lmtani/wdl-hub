@@ -51,7 +51,9 @@ task CompleasmRun {
     command <<<
         set -e
         if [ ~{stub} == "true" ]; then
-            mkdir -p ~{output_directory} && touch ~{output_directory}/summary.txt
+            mkdir -p ~{output_directory}/~{lineage}
+            touch ~{output_directory}/summary.txt
+            touch ~{output_directory}/~{lineage}/full_table.tsv
             exit 0
         fi
 

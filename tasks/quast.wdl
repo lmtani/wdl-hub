@@ -15,6 +15,7 @@ task RunQuast {
 
     command <<<
         if [ ~{stub} == "true" ]; then
+            mkdir -p "~{output_dir}"
             touch "~{output_dir}.tar.gz"
             touch "~{output_dir}/report.tsv"
             exit 0

@@ -1,5 +1,7 @@
 {
   "BenchmarkGenomeAssemblies.accessions": ["a", "b", "c"],
-  "BenchmarkGenomeAssemblies.busco_lineage": "a-busco-compatible-lineage-string",
+  "BenchmarkGenomeAssemblies.quast_reference_accession": "GCA_000214015.2",
+  "BenchmarkGenomeAssemblies.compleasm_lineage": "chlorophyta_odb10",
+  "BenchmarkGenomeAssemblies.compleasm_extra_args": "--mode lite",
   "BenchmarkGenomeAssemblies.stub": true
 }
