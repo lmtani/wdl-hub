@@ -45,7 +45,7 @@ workflow my_workflow {
 
 ### Building a workflow
 
-We use [Pumbaa]() to build our workflows. It packs all dependencies of a WDL workflow into a single zip file. This zip file can be used to run the workflow on Cromwell.
+We use [Pumbaa](https://github.com/lmtani/pumbaa) to build our workflows. It packs all dependencies of a WDL workflow into a single zip file. This zip file can be used to run the workflow on Cromwell.
 
 To build a workflow, run the following command:
 
