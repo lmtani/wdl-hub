@@ -12,13 +12,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
-      - name: Install dependencies
+
+      - name: Install system dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libffi-dev python3-dev
+
+      - name: Install Cython
+        run: pip install Cython
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
           pip install pytest==7.4.3 pytest-workflow==2.0.1 miniwdl==1.2.2
+
       - name: Run tests
         run: pytest
 
@@ -28,8 +40,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
       - name: Create tar.gz of directories
         run: tar -czvf release.tar.gz pipelines tasks
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -40,6 +59,7 @@ jobs:
           release_name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
+
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
