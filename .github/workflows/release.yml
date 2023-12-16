@@ -58,11 +58,11 @@ jobs:
           TAG_NAME=$(echo $GITHUB_REF | sed 's#refs/tags/##')
 
           # Create a file with the tag name
-          echo "Version: $TAG_NAME" > version.txt
+          echo "Version: $TAG_NAME" > wdl-hub/version.txt
 
           # Find .wdl files and include the version file in the tar.gz archive
           find wdl-hub -type f -name "*.wdl" -print > filelist.txt
-          echo version.txt >> filelist.txt
+          echo wdl-hub/version.txt >> filelist.txt
           tar -czvf release.tar.gz --files-from=filelist.txt
 
           # Change back to the original directory

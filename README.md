@@ -57,7 +57,6 @@ We use [Pumbaa](https://github.com/lmtani/pumbaa) to build our workflows. It pac
 To build a workflow, run the following command:
 
 ```bash
-
 # Install pumbaa
 curl https://raw.githubusercontent.com/lmtani/pumbaa/main/assets/install.sh | bash
 
