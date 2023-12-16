@@ -18,37 +18,37 @@ print_message() {
   esac
 }
 
-# # check if release.tar.gz exists
-# if [ -f release.tar.gz ]; then
-#     print_message "release.tar.gz already exists" "warn"
-#     exit 1
-# fi
+# check if release.tar.gz exists
+if [ -f release.tar.gz ]; then
+    print_message "release.tar.gz already exists" "warn"
+    exit 1
+fi
 
-# # check if wget is installed
-# if ! [ -x "$(command -v wget)" ]; then
-#     print_message "wget is not installed" "warn"
-#     exit 1
-# fi
+# check if wget is installed
+if ! [ -x "$(command -v wget)" ]; then
+    print_message "wget is not installed" "warn"
+    exit 1
+fi
 
-# # check if wdl-hub directory exists
-# if [ -d wdl-hub ]; then
-#     print_message "wdl-hub directory already exists. Remove it to install a new release" "warn"
-#     exit 1
-# fi
+# check if wdl-hub directory exists
+if [ -d wdl-hub ]; then
+    print_message "wdl-hub directory already exists. Remove it to install a new release" "warn"
+    exit 1
+fi
 
-# # witch github release to download? default to v0.1.3 (ex: v0.1.3)
-# echo "Which release do you want to download? (default: v0.1.3)"
-# read release
-# # if empty then default to v0.1.3
-# if [ -z "$release" ]; then
-#     release="v0.1.3"
-# fi
+# witch github release to download? default to v0.1.3 (ex: v0.1.3)
+echo "Which release do you want to download? (default: v0.1.3)"
+read release
+# if empty then default to v0.1.3
+if [ -z "$release" ]; then
+    release="v0.1.3"
+fi
 
-# # print the release
-# echo "Downloading release $release"
-# wget https://github.com/lmtani/wdl-hub/releases/download/$release/release.tar.gz
-# tar -xf release.tar.gz
-# rm release.tar.gz
+# print the release
+echo "Downloading release $release"
+wget https://github.com/lmtani/wdl-hub/releases/download/$release/release.tar.gz
+tar -xf release.tar.gz
+rm release.tar.gz
 
 
 print_message "Done!" "ok"
