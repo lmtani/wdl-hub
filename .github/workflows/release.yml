@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create tar.gz of directories
-        run: tar -czvf release.tar.gz pipelines tasks
+        run: find pipelines tasks -type f -name "*.wdl" | tar -czvf release.tar.gz --files-from=-
 
       - name: Create a Release
         uses: "marvinpinto/action-automatic-releases@latest"
