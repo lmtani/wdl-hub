@@ -36,10 +36,9 @@ if [ -d wdl-hub ]; then
     exit 1
 fi
 
-# witch github release to download? default to v0.1.3 (ex: v0.1.3)
-echo "Which release do you want to download? (default: v0.1.3)"
+echo "Which release do you want to download? (default: v0.1.4)"
 read release
-# if empty then default to v0.1.3
+# set default value if release is empty
 if [ -z "$release" ]; then
     release="v0.1.4"
 fi
