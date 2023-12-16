@@ -10,29 +10,32 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:19.03.12
+        options: --privileged
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
 
-      - name: Install system dependencies
+      - name: Upgrade pip and Install build tools
         run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential libffi-dev python3-dev
+          python -m pip install --upgrade pip setuptools wheel
 
-      - name: Install Cython
-        run: pip install Cython
-
-      - name: Install Python dependencies
+      - name: Install Python dependencies with binary preference
         run: |
-          pip install --upgrade pip
-          pip install pytest==7.4.3 pytest-workflow==2.0.1 miniwdl==1.2.2
+          pip install --prefer-binary pytest==7.4.3 pytest-workflow==2.0.1 miniwdl==1.2.2
 
-      - name: Run tests
-        run: pytest
+      - name: Run tests with Docker
+        run: |
+          pytest tasks/
 
   release:
     needs: [test]
@@ -44,7 +47,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
+          python-version: '3.9'
 
       - name: Create tar.gz of directories
         run: tar -czvf release.tar.gz pipelines tasks
