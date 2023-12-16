@@ -20,12 +20,8 @@ task FetchNCBI {
         python <<CODE
         from Bio import Entrez
 
-
         # Always tell NCBI who you are
         Entrez.email = "~{your_email}"
-
-        # The assembly accession number of the genome you want to download
-        # accession = "GCA_949128135.1"  # This is an example, replace with your specific accession number
 
 
         def get_ftp_url(accession):
@@ -39,8 +35,7 @@ task FetchNCBI {
             return record["DocumentSummarySet"]["DocumentSummary"][0]["FtpPath_Stats_rpt"].replace("_assembly_stats.txt", "_genomic.fna.gz")
 
 
-
-        # read lines from accessions.txt
+        # read lines from accessions.txt (example: "GCA_949128135.1")
         with open("~{write_lines(accessions)}") as f:
             accessions = f.readlines()
 

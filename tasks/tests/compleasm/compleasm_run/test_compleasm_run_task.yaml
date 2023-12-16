@@ -1,8 +1,0 @@
-- name: Check if CompleasmRun produces the expected outputs
-  tags:
-  - compleasmrun
-  command: miniwdl run --task CompleasmRun -i tasks/tests/compleasm_run/inputs.json
-    tasks/compleasm.wdl
-  files:
-  - path: _LAST/out/CompleasmRun/summary.txt
-  - path: _LAST/out/CompleasmRun/full_table.tsv

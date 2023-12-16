@@ -1,6 +1,6 @@
 version 1.0
 
-task RunQuast {
+task Quast {
     input {
         File? reference
         Array[File] contigs
@@ -32,7 +32,7 @@ task RunQuast {
 
     runtime {
         docker: container
-        memory: "4"
+        memory: "4 GB"
         disks: "local-disk " + disk_size + " HDD"
         cpu: threads
     }

@@ -1,0 +1,7 @@
+{
+    "fasta": "assembly.fasta",
+    "lineage_tar": "lineage.tar",
+    "lineage": "A_lineage",
+    "output_directory": "outdir",
+    "stub": true
+}

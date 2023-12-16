@@ -1,3 +1,4 @@
 {
-    "file_remote_url": "String"
+    "file_remote_url": "https://a.b/String",
+    "stub": true
 }

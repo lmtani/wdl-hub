@@ -1,0 +1,7 @@
+- name: Check if Quast produces the expected outputs
+  tags:
+  - runquast
+  command: bash tasks/tests/quast/quast/run.sh
+  files:
+  - path: _LAST/out/output_tar_dir/quast_output.tar.gz
+  - path: _LAST/out/report_tsv/report.tsv

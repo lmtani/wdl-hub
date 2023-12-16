@@ -1,3 +1,4 @@
 {
-    "accessions": "Array[String]"
+    "accessions": ["aaaa"],
+    "stub": true
 }

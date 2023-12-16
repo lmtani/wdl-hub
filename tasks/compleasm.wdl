@@ -1,7 +1,7 @@
 version 1.0
 
 
-task CompleasmDownload {
+task Download {
     input {
         String lineage  # BUSCO compatible lineage name
         String lineage_dir = "mb_downloads"
@@ -33,7 +33,7 @@ task CompleasmDownload {
 }
 
 
-task CompleasmRun {
+task Run {
     input {
         File fasta
         File lineage_tar
@@ -68,7 +68,7 @@ task CompleasmRun {
 
     runtime {
         cpu: threads
-        memory: memory
+        memory: "~{memory} GB"
         docker: container
         disk: "local-disk ~{disk_size} HDD"
     }

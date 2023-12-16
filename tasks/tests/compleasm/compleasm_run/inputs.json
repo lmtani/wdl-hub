@@ -1,6 +1,0 @@
-{
-    "fasta": "File",
-    "lineage_tar": "File",
-    "lineage": "String",
-    "output_directory": "String"
-}

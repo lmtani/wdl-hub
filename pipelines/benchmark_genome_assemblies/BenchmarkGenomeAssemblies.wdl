@@ -1,9 +1,9 @@
 version 1.0
 
-import "../../../tasks/compleasm.wdl"
-import "../../../tasks/ncbi.wdl"
-import "../../../tasks/wget.wdl"
-import "../../../tasks/quast.wdl"
+import "../../tasks/compleasm.wdl"
+import "../../tasks/ncbi.wdl"
+import "../../tasks/wget.wdl"
+import "../../tasks/quast.wdl"
 
 
 workflow BenchmarkGenomeAssemblies {
@@ -29,7 +29,7 @@ workflow BenchmarkGenomeAssemblies {
 
     Boolean available_reference_file = defined(quast_reference_file)
 
-    call compleasm.CompleasmDownload {
+    call compleasm.Download {
         input:
             lineage = compleasm_lineage,
             stub = stub
@@ -42,16 +42,16 @@ workflow BenchmarkGenomeAssemblies {
     }
 
     scatter (fasta_url in FetchNCBI.assemblies) {
-        call wget.RunWget {
+        call wget.Wget {
             input:
                 file_remote_url = fasta_url,
                 stub = stub
         }
 
-        call compleasm.CompleasmRun {
+        call compleasm.Run {
             input:
-                fasta = RunWget.downloaded_file,
-                lineage_tar = CompleasmDownload.lineage_tar,
+                fasta = Wget.downloaded_file,
+                lineage_tar = Download.lineage_tar,
                 output_directory = basename(fasta_url, ".fna.gz"),
                 lineage = compleasm_lineage,
                 extra_args = compleasm_extra_args,
@@ -71,7 +71,7 @@ workflow BenchmarkGenomeAssemblies {
         }
 
         String reference_url = FetchReference.assemblies[0]  # because we only fetch one
-        call wget.RunWget as RunWgetReference {
+        call wget.Wget as RunWgetReference {
             input:
                 file_remote_url = reference_url,
                 stub = stub
@@ -80,27 +80,27 @@ workflow BenchmarkGenomeAssemblies {
 
     File reference_sequence = select_first([quast_reference_file, RunWgetReference.downloaded_file])
 
-    call compleasm.CompleasmRun as reference_compleasm {
+    call compleasm.Run as reference_compleasm {
         input:
             fasta = reference_sequence,
-            lineage_tar = CompleasmDownload.lineage_tar,
+            lineage_tar = Download.lineage_tar,
             output_directory = "reference",
             lineage = compleasm_lineage,
             extra_args = compleasm_extra_args,
             stub = stub
     }
 
-    call quast.RunQuast {
+    call quast.Quast {
         input:
             reference = select_first([quast_reference_file, RunWgetReference.downloaded_file]),
-            contigs=RunWget.downloaded_file,
+            contigs=Wget.downloaded_file,
             extra_args=quast_extra_args,
             stub = stub
     }
 
     output {
-        Array[File] compleasm_reports = flatten([CompleasmRun.summary, [reference_compleasm.summary]])
-        Array[File] compleasm_full_tables = flatten([CompleasmRun.full_table, [reference_compleasm.full_table]])
-        File quast_report = RunQuast.output_tar_dir
+        Array[File] compleasm_reports = flatten([Run.summary, [reference_compleasm.summary]])
+        Array[File] compleasm_full_tables = flatten([Run.full_table, [reference_compleasm.full_table]])
+        File quast_report = Quast.output_tar_dir
     }
 }
