@@ -31,7 +31,7 @@ jobs:
 
       - name: Install Python dependencies with binary preference
         run: |
-          pip install --prefer-binary pytest==7.4.3 pytest-workflow==2.0.1 miniwdl==1.2.2
+          pip install pytest pytest-workflow miniwdl
 
       - name: Run tests with Docker
         run: |
