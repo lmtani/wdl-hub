@@ -41,7 +41,7 @@ echo "Which release do you want to download? (default: v0.1.3)"
 read release
 # if empty then default to v0.1.3
 if [ -z "$release" ]; then
-    release="v0.1.3"
+    release="v0.1.4"
 fi
 
 # print the release

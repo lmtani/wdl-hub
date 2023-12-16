@@ -30,7 +30,8 @@ Here we just test that the WDL tasks and workflows can be run without errors. We
 Or you can run our install script:
 
 ```bash
-wget https://raw.githubusercontent.com/lmtani/wdl-hub/main/.scripts/install.sh | bash
+wget https://raw.githubusercontent.com/lmtani/wdl-hub/main/.scripts/install.sh
+bash install.sh
 ```
 
 ### Importing tasks
