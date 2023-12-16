@@ -27,6 +27,12 @@ Here we just test that the WDL tasks and workflows can be run without errors. We
 1. Extract in the directory you will develop your WDL workflow.
 1. Import the tasks and workflows you want to use in your WDL workflow.
 
+Or you can run our install script:
+
+```bash
+wget https://raw.githubusercontent.com/lmtani/wdl-hub/main/.scripts/install.sh | bash
+```
+
 ### Importing tasks
 
 To import a task, add the following line to the top of your WDL file:
