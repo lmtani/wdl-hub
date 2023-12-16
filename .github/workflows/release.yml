@@ -50,12 +50,27 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create tar.gz of directories
-        run: find pipelines tasks -type f -name "*.wdl" | tar -czvf release.tar.gz --files-from=-
+        run: |
+          # Change to the parent directory
+          cd ..
 
+          # Extract the tag name from GITHUB_REF (assuming it's a tag push)
+          TAG_NAME=$(echo $GITHUB_REF | sed 's#refs/tags/##')
+
+          # Create a file with the tag name
+          echo "Version: $TAG_NAME" > version.txt
+
+          # Find .wdl files and include the version file in the tar.gz archive
+          find wdl-hub -type f -name "*.wdl" -print > filelist.txt
+          echo version.txt >> filelist.txt
+          tar -czvf release.tar.gz --files-from=filelist.txt
+
+          # Change back to the original directory
+          cd -
       - name: Create a Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            release.tar.gz
+            ../release.tar.gz
