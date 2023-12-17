@@ -31,7 +31,7 @@ jobs:
           if [[ -z "$changed_files_tags" ]]; then
             echo "matrix=[]" >> $GITHUB_OUTPUT
           else
-            matrix_json=$(echo "$changed_files_tags" | jq -c -M -R  'split(" ") | map(.)')
+            matrix_json=$(echo "$changed_files_tags" | tr '\n' ' ' | jq -M -R -c 'split(" ") | map(select(. != ""))')
             echo $matrix_json
             echo "matrix=$matrix_json" >> $GITHUB_OUTPUT
           fi

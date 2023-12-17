@@ -5,10 +5,10 @@ task Quast {
         Array[File] contigs
         File? reference
         String output_dir = "./quast_output"
-        Int threads = 4
         String extra_args = ""
 
         String container = "quay.io/biocontainers/quast:5.2.0--py39pl5321h4e691d4_3"
+        Int threads = 4
         Boolean stub = false
     }
 

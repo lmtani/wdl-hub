@@ -7,9 +7,9 @@ task Clair3Haploid {
         File alignment_index
         File reference
         File reference_index
-        String output_basename
         String model_name
         File model_tar
+        String output_basename
 
         Int threads = 8
     }
