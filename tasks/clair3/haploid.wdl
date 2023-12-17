@@ -10,6 +10,7 @@ task Clair3Haploid {
         String output_basename
         String model_name
         File model_tar
+
         Int threads = 8
     }
 

@@ -7,11 +7,12 @@ task Run {
         File lineage_tar
         String lineage
         String output_directory
-        Int threads = 4
-        Int memory = 12
         String lineage_dir = "mb_downloads"
         String extra_args = ""
+
         String container = "quay.io/biocontainers/compleasm:0.2.2--pyh7cba7a3_0"
+        Int threads = 4
+        Int memory = 12
         Int disk_size = 10
         Boolean stub = false
     }
