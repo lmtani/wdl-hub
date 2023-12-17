@@ -35,7 +35,7 @@ task FetchNCBI {
             return record["DocumentSummarySet"]["DocumentSummary"][0]["FtpPath_Stats_rpt"].replace("_assembly_stats.txt", "_genomic.fna.gz")
 
 
-        # read lines from accessions.txt (example: "GCA_949128135.1")
+        # read lines from accessions.txt (example: GCA_949128135.1)
         with open("~{write_lines(accessions)}") as f:
             accessions = f.readlines()
 
