@@ -28,7 +28,12 @@ jobs:
         id: set-matrix
         run: |
           changed_files_tags=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | sed -n '/^tasks\/.*\.wdl$/s|^tasks/||; s|\.wdl$||p')
-          echo "::set-output name=matrix::$(echo $changed_files_tags | jq -R 'split(" ") | map({tag: .})')"
+          if [[ -z "$changed_files_tags" ]]; then
+            echo "matrix=[]" >> $GITHUB_OUTPUT
+          else
+            matrix_json=$(echo "$changed_files_tags" | jq -R 'split(" ") | map({tag: .})')
+            echo "matrix=$matrix_json" >> $GITHUB_OUTPUT
+          fi
         shell: bash -eo pipefail {0}
 
   test:
