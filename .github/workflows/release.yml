@@ -38,9 +38,19 @@ jobs:
         run: |
           pip install pytest pytest-workflow miniwdl
 
+      - name: Get changed file names
+        id: get-file-names
+        run: |
+          changed_files_tags=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | sed -n '/^tasks\/.*\.wdl$/s|^tasks/||; s|\.wdl$||p')
+          echo "::set-output name=files::$changed_files_tags"
+
       - name: Run tests with Docker
         run: |
-          pytest tasks/
+          for file in ${{ steps.get-file-names.outputs.files }}
+          do
+            pytest --tag $file tests/tasks
+          done
+
 
   release:
     needs: [test]
