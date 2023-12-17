@@ -1,6 +1,6 @@
 - name: Check if stub of Wget produces expected output
   tags:
-  - runwget
-  command: bash tasks/tests/wget/run_wget/run.sh
+  - wget/wget
+  command: bash tests/tasks/wget/wget/run.sh
   files:
   - path: _LAST/out/downloaded_file/String

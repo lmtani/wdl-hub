@@ -1,6 +1,6 @@
 - name: Check if Download produces the expected outputs
   tags:
-  - compleasmdownload
-  command: bash tasks/tests/compleasm/download/run.sh
+  - compleasm/download
+  command: bash tests/tasks/compleasm/download/run.sh
   files:
   - path: _LAST/out/lineage_tar/busco-compatible-lineage.tar.gz

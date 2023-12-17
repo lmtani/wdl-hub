@@ -1,7 +1,7 @@
 - name: Check if stub of FetchNCBI produces the expected outputs
   tags:
-  - fetchncbi
-  command: bash tasks/tests/ncbi/fetch_ncbi/run.sh
+  - ncbi/fetch
+  command: bash tests/tasks/ncbi/fetch/run.sh
   files:
   - path: _LAST/stdout.txt
     contains:

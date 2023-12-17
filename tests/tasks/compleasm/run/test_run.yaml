@@ -1,7 +1,7 @@
 - name: Check if Run produces the expected outputs
   tags:
-  - compleasmrun
-  command: bash tasks/tests/compleasm/run/run.sh
+  - compleasm/run
+  command: bash tests/tasks/compleasm/run/run.sh
   files:
   - path: _LAST/out/summary/summary.txt
   - path: _LAST/out/full_table/full_table.tsv

@@ -21,7 +21,7 @@ task Quast {
             exit 0
         fi
 
-        quast.py ~{extra_args} \
+        quast.py  ~{extra_args} \
             --threads ~{threads} \
             --output-dir ~{output_dir} \
             ~{"-r " + reference}  \
