@@ -1,0 +1,10 @@
+{
+    "alignment": "alignment.cram",
+    "alignment_index": "alignment.cram.crai",
+    "reference": "reference.fasta",
+    "reference_index": "reference.fasta.fai",
+    "model_name": "model",
+    "model_tar": "model.tar",
+    "stub": true,
+    "output_basename": "output-name"
+}

@@ -1,6 +1,6 @@
 version 1.0
 
-
+# TODO: maybe modify it to make generic for any model
 task Clair3Haploid {
     input {
         File alignment
@@ -12,10 +12,23 @@ task Clair3Haploid {
         String output_basename
 
         Int threads = 8
+        Boolean stub = false
     }
 
     command <<<
     set -e
+
+    if [ ~{stub} == "true" ]; then
+        mkdir -p ~{output_basename}
+        touch "~{output_basename}/full_alignment.vcf.gz" \
+                "~{output_basename}/full_alignment.vcf.gz.tbi" \
+                "~{output_basename}/pileup.vcf.gz" \
+                "~{output_basename}/pileup.vcf.gz.tbi" \
+                "~{output_basename}.merged.vcf.gz" \
+                "~{output_basename}.merged.vcf.gz.tbi"
+        exit 0
+    fi
+
     tar -xf ~{model_tar} -C ./
 
     /opt/bin/run_clair3.sh \

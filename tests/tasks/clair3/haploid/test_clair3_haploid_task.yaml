@@ -1,0 +1,11 @@
+- name: Check if Clair3Haploid produces the expected outputs
+  tags:
+  - clair3/haploid
+  command: bash tests/tasks/clair3/haploid/run.sh
+  files:
+  - path: _LAST/out/full_alignment/full_alignment.vcf.gz
+  - path: _LAST/out/full_alignment_index/full_alignment.vcf.gz.tbi
+  - path: _LAST/out/pileup/pileup.vcf.gz
+  - path: _LAST/out/pileup_index/pileup.vcf.gz.tbi
+  - path: _LAST/out/vcf/output-name.merged.vcf.gz
+  - path: _LAST/out/vcf_index/output-name.merged.vcf.gz.tbi
