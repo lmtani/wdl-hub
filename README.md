@@ -1,5 +1,7 @@
 # WDL-hub
 
+[![Test and Release](https://github.com/lmtani/wdl-hub/actions/workflows/release.yml/badge.svg)](https://github.com/lmtani/wdl-hub/actions/workflows/release.yml)
+
 A centralized repository for organizing, storing, and sharing WDL tasks and workflows. Currently it supports only WDL 1.0.
 
 > [!NOTE]
