@@ -67,7 +67,7 @@ jobs:
         run: pip install -r tests/requirements.txt
 
       - name: Run test ${{ matrix.tag }}
-        run: pytest --git-aware --tag ${{ matrix.tag }} --basetemp /tmp/ci tests/tasks
+        run: pytest --git-aware --tag ${{ matrix.tag }} --kwd --basetemp /tmp/ci tests/tasks
 
       - uses: actions/upload-artifact@v4
         with:
