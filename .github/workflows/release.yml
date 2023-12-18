@@ -77,9 +77,14 @@ jobs:
           echo "safe_artifact_name=$safe_artifact_name" >> $GITHUB_ENV
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: ${{ env.safe_artifact_name }}-command
-          path: /tmp/ci/**/command
+          path: |
+            /tmp/ci/**/command
+            /tmp/ci/**/*.err
+            /tmp/ci/**/*.out
+
 
   release:
     needs: [test]
