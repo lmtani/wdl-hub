@@ -1,0 +1,27 @@
+name: PR Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/*.wdl'
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed file names
+        id: get-file-names
+        run: |
+          changed_files=$(git diff --name-only origin/main...${{ github.head_ref }} | grep '\.wdl$')
+          if [[ -z "$changed_files" ]]; then
+            echo "No WDL files changed."
+          else
+            echo "Changed WDL files:"
+            echo "$changed_files"
+          fi
