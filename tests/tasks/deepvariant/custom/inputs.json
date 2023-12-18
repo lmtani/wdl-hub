@@ -1,0 +1,9 @@
+{
+    "reference": "reference.fasta",
+    "reference_index": "reference.fasta.fai",
+    "alignment": "alignment.cram",
+    "alignment_index": "alignment.cram.crai",
+    "model_type": "wes",
+    "model": "a_model.tar",
+    "stub": true
+}
