@@ -15,6 +15,8 @@ task Clair3Haploid {
         Boolean stub = false
     }
 
+    Int disk_size = ceil((size(alignment, "GB") + size(reference, "GB") + size(model_tar, "GB")) * 2)
+
     command <<<
     set -e
 
@@ -53,6 +55,7 @@ task Clair3Haploid {
         docker: "docker.io/hkubal/clair3:v1.0.4"
         cpu: threads
         memory: "8G"  # TODO: check if it's enough
+        disks: "local-disk " + disk_size + " HDD"
     }
 
     output {
