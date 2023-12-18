@@ -1,0 +1,10 @@
+- name: Check if HISAT2PairedEnd produces the expected outputs
+  tags:
+  - hisat2/paired_end
+  command: bash tests/tasks/hisat2/paired_end/run.sh
+  files:
+  - path: _LAST/out/log_file/OUTPUT.log
+  - path: _LAST/out/met_file/OUTPUT.hisat2.met.txt
+  - path: _LAST/out/output_bam/OUTPUT.bam
+  - path: _LAST/out/bam_index/OUTPUT.bam.bai
+  - path: _LAST/out/version/version.txt

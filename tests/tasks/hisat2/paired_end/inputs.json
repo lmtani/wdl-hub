@@ -1,0 +1,9 @@
+{
+    "hisat2_ref": "reference.tar",
+    "fastq1": "reads_1.fq.gz",
+    "fastq2": "reads_2.fq.gz",
+    "ref_name": "reference",
+    "output_basename": "OUTPUT",
+    "sample_name": "SAMPLE",
+    "stub": true
+}
