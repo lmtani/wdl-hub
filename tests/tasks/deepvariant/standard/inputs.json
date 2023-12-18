@@ -4,6 +4,5 @@
     "alignment": "alignment.cram",
     "alignment_index": "alignment.cram.crai",
     "model_type": "WES",
-    "model": "a_model.tar",
     "stub": true
 }

@@ -1,23 +1,21 @@
-- name: Check if DeepVariantCustomModel produces the expected outputs
+- name: Check if DeepVariant produces the expected outputs
   tags:
-  - deepvariant/custom
-  command: bash tests/tasks/deepvariant/custom/run.sh
+  - deepvariant/standard
+  command: bash tests/tasks/deepvariant/standard/run.sh
   files:
   - path: _LAST/out/output_vcf/alignment.deepvariant.vcf.gz
   - path: _LAST/out/output_vcf_index/alignment.deepvariant.vcf.gz.tbi
   - path: _LAST/out/html/alignment.deepvariant.visual_report.html
   - path: _LAST/out/version/version.txt
     contains:
-    - "DeepVariant version 1.4.0"
+    - "DeepVariant version 1.6.0"
   - path: _LAST/command
     contains:
     - "run_deepvariant"
     - "--model_type=WES"
-    - "--customized_model=a_model/model.ckpt"
     - "--num_shards=\"$(nproc)\""
     - "--intermediate_results_dir output/intermediate_results_dir"
     - "--output_vcf=alignment.deepvariant.vcf.gz"
     contains_regex:
-    - "tar -xf .+\\/a_model\\.tar"
     - "--ref=.+\\/reference\\.fasta"
     - "--reads=.+\\/alignment\\.cram"
