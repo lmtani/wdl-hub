@@ -41,8 +41,8 @@ task Clair3Haploid {
         --model_path="./~{model_name}" \
         --output=~{output_basename} \
         --no_phasing_for_fa \
-        --include_all_ctgs \
         --haploid_precise \
+        --include_all_ctgs \
         --sample_name=~{output_basename}
 
     cp ~{output_basename}/merge_output.vcf.gz ./~{output_basename}.merged.vcf.gz
