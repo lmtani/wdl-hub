@@ -1,6 +1,6 @@
 - name: Check if HISAT2Build produces the expected outputs
   tags:
-  - hisat2
+  - hisat2/index_build
   command: bash tests/tasks/hisat2/index_build/run.sh
   files:
   - path: _LAST/out/hisat2_index/REFERENCE_NAME.tar
