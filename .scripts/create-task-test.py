@@ -36,7 +36,7 @@ def generate_yaml(task_name: str, tags: list[str], inputs_path: str, wdl_path: s
         yaml.dump(data, outfile)
 
 
-def generate_tests_for_task(task: WDL.Task, task_path: str, test_base_path: str) -> None:
+def generate_tests_for_task(task: WDL.Task, task_path: str) -> None:
     """Generates test inputs and YAML files for a provided WDL task."""
     test_path = f"tests/{os.path.splitext(task_path)[0]}"
 
@@ -62,14 +62,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Generate test files for a specific WDL task.")
     parser.add_argument("--wdl_file_path", help="The path to the WDL file.")
     parser.add_argument("--task_name", help="The name of the task in the WDL file for which to generate test files.")
-    parser.add_argument("--test_path", default="tasks/tests", help="The path to the test folder.")
     args = parser.parse_args()
 
     doc = WDL.load(args.wdl_file_path)
     for i in doc.tasks:
         if isinstance(i, WDL.Task) and i.name == args.task_name:
             print(f'Generating test for {i.name}')
-            generate_tests_for_task(i, task_path=args.wdl_file_path, test_base_path=args.test_path)
+            generate_tests_for_task(i, task_path=args.wdl_file_path)
 
 
 if __name__ == "__main__":
