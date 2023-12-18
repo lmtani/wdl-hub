@@ -1,0 +1,28 @@
+- name: Check if HAPPY produces the expected outputs
+  tags:
+  - happy/happy
+  command: bash tests/tasks/happy/happy/run.sh
+  files:
+  - path: _LAST/out/summary_csv/benchmark-outputs.summary.csv
+  - path: _LAST/out/roc_all_csv/benchmark-outputs.roc.all.csv.gz
+  - path: _LAST/out/roc_indel_locations_csv/benchmark-outputs.roc.Locations.INDEL.csv.gz
+  - path: _LAST/out/roc_indel_locations_pass_csv/benchmark-outputs.roc.Locations.INDEL.PASS.csv.gz
+  - path: _LAST/out/roc_snp_locations_csv/benchmark-outputs.roc.Locations.SNP.csv.gz
+  - path: _LAST/out/roc_snp_locations_pass_csv/benchmark-outputs.roc.Locations.SNP.PASS.csv.gz
+  - path: _LAST/out/extended_csv/benchmark-outputs.extended.csv
+  - path: _LAST/out/runinfo/benchmark-outputs.runinfo.json
+  - path: _LAST/out/metrics_json/benchmark-outputs.metrics.json.gz
+  - path: _LAST/out/vcf/benchmark-outputs.vcf.gz
+  - path: _LAST/out/tbi/benchmark-outputs.vcf.gz.tbi
+  - path: _LAST/out/version/version.txt
+    contains:
+    - "Hap.py"
+  - path: _LAST/command
+    contains:
+    - "hap.py \\"
+    - "-o benchmark-outputs"
+    - "--threads 4"
+    contains_regex:
+    - "--reference .+\\/reference.fasta"
+    - ".+\\/truth.vcf.gz"
+    - ".+\\/query.vcf.gz"

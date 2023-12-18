@@ -1,0 +1,9 @@
+{
+    "truth_vcf": "truth.vcf.gz",
+    "query_vcf": "query.vcf.gz",
+    "prefix": "benchmark-outputs",
+    "fasta": "reference.fasta",
+    "fasta_fai": "reference.fasta.fai",
+    "cpus": 4,
+    "stub": true
+}
