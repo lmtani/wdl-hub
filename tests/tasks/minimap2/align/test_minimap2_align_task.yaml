@@ -1,0 +1,7 @@
+- name: Check if Minimap2Align produces the expected outputs
+  tags:
+  - minimap2/align
+  command: bash tests/tasks/minimap2/align/run.sh
+  files:
+  - path: _LAST/out/alignment/reads.sam
+  - path: _LAST/out/version/version.txt

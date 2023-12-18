@@ -1,0 +1,9 @@
+{
+    "reads_tar": "reads.tar.gz",
+    "reference_mmi": "reference.mmi",
+    "sample_name": "SAMPLE",
+    "sample_id": "a",
+    "technology": "NANOPORE",
+    "library": "B01",
+    "stub": true
+}
