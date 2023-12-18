@@ -51,6 +51,7 @@ task Clair3Haploid {
 
     runtime {
         docker: "docker.io/hkubal/clair3:v1.0.4"
+        cpu: threads
     }
 
     output {

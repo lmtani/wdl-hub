@@ -39,7 +39,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    if: fromJson(needs.changed.outputs.matrix).length > 0
+    if: ${{ fromJson(needs.changed.outputs.matrix).length > 0 }}
     needs: changed
     strategy:
       fail-fast: false
