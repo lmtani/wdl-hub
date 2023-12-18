@@ -44,7 +44,7 @@ def generate_tests_for_task(task: WDL.Task, task_path: str, test_base_path: str)
         os.makedirs(test_path)
 
     inputs_path = generate_inputs({j.name: str(j.value.type) for j in task.required_inputs}, test_path)
-    output_paths = [f'_LAST/out/{o.name}/<complete-here>' for o in task.effective_outputs]
+    output_paths = [f'_LAST/out/{o.name}/<{o.info}>' for o in task.effective_outputs]
 
     tag = "/".join(test_path.split("/")[-2:])  # "tests/tasks/minimap2/align" -> "minimap2/align"
     generate_yaml(
