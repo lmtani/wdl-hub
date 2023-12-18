@@ -71,7 +71,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: miniwdl-command
+          name: ${{ matrix.tag }}-command
           path: /tmp/ci/**/command
 
   release:
