@@ -36,24 +36,20 @@ def generate_yaml(task_name: str, tags: list[str], inputs_path: str, wdl_path: s
         yaml.dump(data, outfile)
 
 
-def get_file_basename(file_path: str) -> str:
-    """Returns the basename of a file path."""
-    return os.path.splitext(os.path.basename(file_path))[0]
-
-
 def generate_tests_for_task(task: WDL.Task, task_path: str, test_base_path: str) -> None:
     """Generates test inputs and YAML files for a provided WDL task."""
-    snake_case_name = from_camel_case_to_snake_case(task.name)
-    test_path = f'{test_base_path}/{get_file_basename(task_path)}/{snake_case_name}'
+    test_path = f"tests/{os.path.splitext(task_path)[0]}"
+
     if not os.path.exists(test_path):
         os.makedirs(test_path)
 
     inputs_path = generate_inputs({j.name: str(j.value.type) for j in task.required_inputs}, test_path)
     output_paths = [f'_LAST/out/{o.name}/<complete-here>' for o in task.effective_outputs]
 
+    tag = "/".join(test_path.split("/")[-2:])  # "tests/tasks/minimap2/align" -> "minimap2/align"
     generate_yaml(
         task_name=task.name,
-        tags=[task.name.lower()],
+        tags=[tag],
         inputs_path=inputs_path,
         wdl_path=task_path,
         output_paths=output_paths,
