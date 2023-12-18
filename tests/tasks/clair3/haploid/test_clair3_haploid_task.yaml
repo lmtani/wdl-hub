@@ -9,3 +9,23 @@
   - path: _LAST/out/pileup_index/pileup.vcf.gz.tbi
   - path: _LAST/out/vcf/output-name.merged.vcf.gz
   - path: _LAST/out/vcf_index/output-name.merged.vcf.gz.tbi
+  - path: _LAST/out/version/version.txt
+    contains:
+    - "Clair3 v1.0.4"
+  - path: _LAST/command
+    contains:
+    - "/opt/bin/run_clair3.sh"
+    - "--threads=8"
+    - "--platform=\"ont\""
+    - "--model_path=\"./model\""
+    - "--output=output-name"
+    - "--no_phasing_for_fa"
+    - "--include_all_ctgs"
+    - "--haploid_precise"
+    - "--sample_name=output-name"
+    - "cp output-name/merge_output.vcf.gz ./output-name.merged.vcf.gz"
+    - "cp output-name/merge_output.vcf.gz.tbi ./output-name.merged.vcf.gz.tbi"
+    contains_regex:
+    - "tar -xf .+\\/model\\.tar -C \\./"
+    - "--bam_fn=.+\\/alignment.cram"
+    - "--ref_fn=.+\\/reference.fasta"

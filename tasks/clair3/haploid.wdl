@@ -18,6 +18,8 @@ task Clair3Haploid {
     command <<<
     set -e
 
+    /opt/bin/run_clair3.sh --version > version.txt
+
     if [ ~{stub} == "true" ]; then
         mkdir -p ~{output_basename}
         touch "~{output_basename}/full_alignment.vcf.gz" \
@@ -58,5 +60,6 @@ task Clair3Haploid {
         File pileup_index = "~{output_basename}/pileup.vcf.gz.tbi"
         File vcf = "~{output_basename}.merged.vcf.gz"
         File vcf_index = "~{output_basename}.merged.vcf.gz.tbi"
+        File version = "version.txt"
     }
 }
