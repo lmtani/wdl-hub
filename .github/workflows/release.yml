@@ -67,12 +67,12 @@ jobs:
         run: pip install -r tests/requirements.txt
 
       - name: Run test ${{ matrix.tag }}
-        run: pytest --git-aware --tag ${{ matrix.tag }} --basetemp temp-dir tests/tasks
+        run: pytest --git-aware --tag ${{ matrix.tag }} --basetemp /tmp/ci tests/tasks
 
       - uses: actions/upload-artifact@v4
         with:
           name: miniwdl-command
-          path: temp-dir/**/command
+          path: /tmp/ci/**/command
 
   release:
     needs: [test]

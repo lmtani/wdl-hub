@@ -54,8 +54,8 @@ task Clair3Haploid {
     runtime {
         docker: "docker.io/hkubal/clair3:v1.0.4"
         cpu: threads
-        memory: "8G"  # TODO: check if it's enough
         disks: "local-disk " + disk_size + " HDD"
+        memory: "8G"  # TODO: check if it's enough
     }
 
     output {
