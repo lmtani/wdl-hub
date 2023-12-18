@@ -69,9 +69,16 @@ jobs:
       - name: Run test ${{ matrix.tag }}
         run: pytest --git-aware --tag ${{ matrix.tag }} --kwd --basetemp /tmp/ci tests/tasks
 
+      - name: Prepare artifact name
+        id: prepare_artifact_name
+        run: |
+          # This will replace slashes with dashes
+          safe_artifact_name=$(echo "${{ matrix.tag }}" | sed 's:/:-:g')
+          echo "safe_artifact_name=$safe_artifact_name" >> $GITHUB_ENV
+
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.tag }}-command
+          name: ${{ env.safe_artifact_name }}-command
           path: /tmp/ci/**/command
 
   release:

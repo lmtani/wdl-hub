@@ -40,8 +40,8 @@ task HAPPY {
             ~{query_vcf} \
             ~{"--reference " + fasta} \
             ~{"--threads " + cpus} \
-            ~{"--T " + targets_bed } \
             ~{"--R " + regions_bed } \
+            ~{"--T " + targets_bed } \
             ~{"--false-positives " + false_positives_bed} \
             ~{"--stratification " + stratification_tsv} \
             -o ~{prefix}
