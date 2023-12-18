@@ -1,0 +1,7 @@
+- name: Check if MakeMinimap2Index produces the expected outputs
+  tags:
+  - minimap2/index
+  command: bash tests/tasks/minimap2/index/run.sh
+  files:
+  - path: _LAST/out/index/reference.mmi
+  - path: _LAST/out/version/version.txt
