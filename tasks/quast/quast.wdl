@@ -15,6 +15,10 @@ task Quast {
     Int disk_size = ceil(size(reference, "GiB") + size(contigs, "GiB")) + 10
 
     command <<<
+        set -e
+
+        quast.py --version > version.txt
+
         if [ ~{stub} == "true" ]; then
             mkdir -p "~{output_dir}"
             touch "~{output_dir}.tar.gz"
@@ -22,7 +26,7 @@ task Quast {
             exit 0
         fi
 
-        quast.py  ~{extra_args} \
+        quast.py ~{extra_args} \
             --threads ~{threads} \
             --output-dir ~{output_dir} \
             ~{"-r " + reference}  \
@@ -41,5 +45,6 @@ task Quast {
     output {
         File output_tar_dir = "~{output_dir}.tar.gz"
         File report_tsv = "~{output_dir}/report.tsv"
+        File version = "version.txt"
     }
 }

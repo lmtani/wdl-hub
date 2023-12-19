@@ -5,3 +5,8 @@
   files:
   - path: _LAST/out/index/reference.mmi
   - path: _LAST/out/version/version.txt
+  - path: _LAST/command
+    contains:
+    - minimap2 --version
+    contains_regex:
+    - minimap2 -d reference.mmi .+\/reference\.fasta

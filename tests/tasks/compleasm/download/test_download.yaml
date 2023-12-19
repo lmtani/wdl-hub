@@ -4,3 +4,7 @@
   command: bash tests/tasks/compleasm/download/run.sh
   files:
   - path: _LAST/out/lineage_tar/busco-compatible-lineage.tar.gz
+  - path: _LAST/command
+    contains:
+    - compleasm download --library_path mb_downloads busco-compatible-lineage
+    - tar -czvf busco-compatible-lineage.tar.gz mb_downloads

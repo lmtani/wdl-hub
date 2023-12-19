@@ -5,3 +5,15 @@
   files:
   - path: _LAST/out/output_tar_dir/quast_output.tar.gz
   - path: _LAST/out/report_tsv/report.tsv
+  - path: _LAST/out/version/version.txt
+    contains:
+    - QUAST v5.2.0
+  - path: _LAST/command
+    contains:
+    - quast.py --version
+    - quast.py  \
+    - --output-dir ./quast_output \
+    - --threads 4 \
+    - tar -czvf ./quast_output.tar.gz ./quast_output
+    contains_regex:
+    - .+\/assembly\.fasta

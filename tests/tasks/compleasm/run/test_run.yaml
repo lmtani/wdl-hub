@@ -5,3 +5,11 @@
   files:
   - path: _LAST/out/summary/summary.txt
   - path: _LAST/out/full_table/full_table.tsv
+  - path: _LAST/command
+    contains:
+    - compleasm run --library_path mb_downloads
+    - --threads 4
+    - --lineage A_lineage
+    - --output_dir outdir
+    contains_regex:
+    - "--assembly_path .+\\/assembly.fasta"

@@ -8,3 +8,27 @@
   - path: _LAST/out/output_bam/OUTPUT.bam
   - path: _LAST/out/bam_index/OUTPUT.bam.bai
   - path: _LAST/out/version/version.txt
+  - path: _LAST/command
+    contains:
+    - hisat2 --version
+    - hisat2 -t
+    - -x reference/reference
+    - --rg-id=SAMPLE
+    - --rg SM:SAMPLE
+    - --rg LB:SAMPLE
+    - --rg PL:ILLUMINA
+    - --rg PU:SAMPLE
+    - --new-summary
+    - --summary-file OUTPUT.log
+    - --met-file OUTPUT.hisat2.met.txt
+    - --met 5
+    - --seed 12345
+    - -k 10
+    - --secondary
+    - -p 4
+    - -S >(samtools view -1 -h -o OUTPUT_unsorted.bam)
+    - samtools sort -@ 4 -O bam -o "OUTPUT.bam" "OUTPUT_unsorted.bam"
+    - samtools index "OUTPUT.bam"
+    contains_regex:
+    - -1 .+\/reads_1.fq.gz
+    - -2 .+\/reads_2.fq.gz

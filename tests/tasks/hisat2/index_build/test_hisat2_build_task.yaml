@@ -5,3 +5,9 @@
   files:
   - path: _LAST/out/hisat2_index/REFERENCE_NAME.tar
   - path: _LAST/out/version/version.txt
+  - path: _LAST/command
+    contains:
+    - hisat2-build --version
+    - mkdir -p REFERENCE_NAME
+    - tar -cf REFERENCE_NAME.tar REFERENCE_NAME/
+    - hisat2-build /mnt/miniwdl_task_container/work/_miniwdl_inputs/0/reference.fasta REFERENCE_NAME/REFERENCE_NAME
