@@ -1,0 +1,10 @@
+{
+    "reference_fasta": "reference.fasta",
+    "reference_fasta_index": "reference.fasta.fai",
+    "alignment": "alignment.cram",
+    "alignment_index": "alignment.cram.crai",
+    "out_basename": "TEST",
+    "coverage_targets": "regions.bed",
+    "threshold_values": "10,20,30,40",
+    "stub": true
+}

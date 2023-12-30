@@ -1,0 +1,26 @@
+- name: Check if RunMosDepth produces the expected outputs
+  tags:
+  - mosdepth/mosdepth
+  command: bash tests/tasks/mosdepth/mosdepth/run.sh tests/tasks/mosdepth/mosdepth/inputs.json
+  files:
+  - path: _LAST/out/summary/TEST.mosdepth.summary.txt
+  - path: _LAST/out/per_base/TEST.per-base.bed.gz
+  - path: _LAST/out/per_base_index/TEST.per-base.bed.gz.csi
+  - path: _LAST/out/global_dist/TEST.mosdepth.global.dist.txt
+  - path: _LAST/out/version/version.txt
+
+
+- name: Check if RunMosDepth produces the expected optional outputs
+  tags:
+  - mosdepth/mosdepth
+  command: bash tests/tasks/mosdepth/mosdepth/run.sh tests/tasks/mosdepth/mosdepth/inputs-optional.json
+  files:
+  - path: _LAST/out/summary/TEST.mosdepth.summary.txt
+  - path: _LAST/out/per_base/TEST.per-base.bed.gz
+  - path: _LAST/out/per_base_index/TEST.per-base.bed.gz.csi
+  - path: _LAST/out/global_dist/TEST.mosdepth.global.dist.txt
+  - path: _LAST/out/thresholds/TEST.thresholds.bed.gz
+  - path: _LAST/out/thresholds_index/TEST.thresholds.bed.gz.csi
+  - path: _LAST/out/regions/TEST.regions.bed.gz
+  - path: _LAST/out/regions_index/TEST.regions.bed.gz.csi
+  - path: _LAST/out/version/version.txt
