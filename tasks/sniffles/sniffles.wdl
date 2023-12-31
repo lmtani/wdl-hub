@@ -13,7 +13,7 @@ task RunSniffles {
         Boolean stub = false
     }
 
-    String outname = basename(alignment, ".cram")
+    String outname = basename(basename(alignment, ".cram"), ".bam")
 
     command <<<
         set -e

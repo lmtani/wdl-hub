@@ -1,0 +1,8 @@
+- name: Check if RunSniffles produces the expected outputs
+  tags:
+  - sniffles/sniffles
+  command: bash tests/tasks/sniffles/sniffles/run.sh
+  files:
+  - path: _LAST/out/vcf/alignment.sniffles.vcf.gz
+  - path: _LAST/out/vcf_index/alignment.sniffles.vcf.gz.tbi
+  - path: _LAST/out/version/version.txt
