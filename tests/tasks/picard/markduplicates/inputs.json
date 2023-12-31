@@ -4,6 +4,5 @@
         "alignment2.bam"
     ],
     "output_bam_basename": "MERGED",
-    "metrics_filename": "metrics.txt",
     "stub": true
 }
