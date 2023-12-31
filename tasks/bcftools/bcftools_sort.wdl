@@ -6,7 +6,7 @@ task Sort {
         Boolean stub = false
     }
 
-    String outname = basename(vcf)
+    String outname = basename(vcf, ".vcf.gz")
 
     command <<<
         set -e
