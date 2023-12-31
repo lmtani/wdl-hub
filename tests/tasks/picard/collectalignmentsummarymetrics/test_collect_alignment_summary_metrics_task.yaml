@@ -1,0 +1,8 @@
+- name: Check if CollectAlignmentSummaryMetrics produces the expected outputs
+  tags:
+  - picard
+  - picard/collectalignmentsummarymetrics
+  command: bash tests/tasks/picard/collectalignmentsummarymetrics/run.sh
+  files:
+  - path: _LAST/out/metrics/alignment_alignment_metrics.txt
+  - path: _LAST/out/version/version.txt
