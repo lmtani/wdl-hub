@@ -1,0 +1,9 @@
+{
+    "alignments": [
+        "alignment1.bam",
+        "alignment2.bam",
+        "alignment3.bam"
+    ],
+    "output_basename": "ALL",
+    "stub": true
+}

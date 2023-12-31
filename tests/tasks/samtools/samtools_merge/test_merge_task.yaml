@@ -1,0 +1,9 @@
+- name: Check if Merge produces the expected outputs
+  tags:
+  - samtools
+  - samtools/samtools_merge
+  command: bash tests/tasks/samtools/samtools_merge/run.sh
+  files:
+  - path: _LAST/out/alignment/ALL.bam
+  - path: _LAST/out/alignment_index/ALL.bam.bai
+  - path: _LAST/out/version/version.txt

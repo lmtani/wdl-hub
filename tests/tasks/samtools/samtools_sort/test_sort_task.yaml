@@ -1,0 +1,8 @@
+- name: Check if Sort produces the expected outputs
+  tags:
+  - samtools
+  - samtools/samtools_sort
+  command:
+  files:
+  - path: _LAST/out/alignment/OUTPUT.bam
+  - path: _LAST/out/alignment_index/OUTPUT.bam.bai
