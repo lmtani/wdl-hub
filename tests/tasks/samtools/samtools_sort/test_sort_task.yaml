@@ -2,7 +2,7 @@
   tags:
   - samtools
   - samtools/samtools_sort
-  command:
+  command: bash tests/tasks/samtools/samtools_sort/run.sh
   files:
   - path: _LAST/out/alignment/OUTPUT.bam
   - path: _LAST/out/alignment_index/OUTPUT.bam.bai
