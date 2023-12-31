@@ -1,0 +1,5 @@
+{
+    "per_base_coverage": "sample.per-base.bed.gz",
+    "min_coverage": 10,
+    "stub": true
+}

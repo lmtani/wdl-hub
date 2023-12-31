@@ -1,0 +1,8 @@
+- name: Check if IntersectAll produces the expected outputs
+  tags:
+  - bedtools
+  - bedtools/intersect_all_files
+  command: bash tests/tasks/bedtools/intersect_all_files/run.sh
+  files:
+  - path: _LAST/out/intersected/ALL.bed
+  - path: _LAST/out/version/version.txt

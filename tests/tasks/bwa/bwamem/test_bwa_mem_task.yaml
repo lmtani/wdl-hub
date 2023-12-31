@@ -1,0 +1,8 @@
+- name: Check if BwaMem produces the expected outputs
+  tags:
+  - bwa
+  - bwa/bwamem
+  command: bash tests/tasks/bwa/bwamem/run.sh
+  files:
+  - path: _LAST/out/bam/PATHOGEN_A.bam
+  - path: _LAST/out/version/version.txt

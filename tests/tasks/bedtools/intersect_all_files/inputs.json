@@ -1,0 +1,9 @@
+{
+    "regions": [
+        "a.bed",
+        "b.bed",
+        "c.bed"
+    ],
+    "output_basename": "ALL.bed",
+    "stub": true
+}

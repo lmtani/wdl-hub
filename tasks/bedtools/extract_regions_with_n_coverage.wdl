@@ -32,5 +32,6 @@ task ExtractRegionsWithNCoverage {
 
     output {
         File covered = "~{basename}_min_of_~{min_coverage}_coverage_regions.bed"
+        File version = "version.txt"
     }
 }

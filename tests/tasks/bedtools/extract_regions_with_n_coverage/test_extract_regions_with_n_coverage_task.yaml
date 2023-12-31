@@ -1,0 +1,8 @@
+- name: Check if ExtractRegionsWithNCoverage produces the expected outputs
+  tags:
+  - bedtools
+  - bedtools/extract_regions_with_n_coverage
+  command: bash tests/tasks/bedtools/extract_regions_with_n_coverage/run.sh
+  files:
+  - path: _LAST/out/covered/sample_min_of_10_coverage_regions.bed
+  - path: _LAST/out/version/version.txt
