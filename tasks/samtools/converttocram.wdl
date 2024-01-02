@@ -13,8 +13,7 @@ task ConvertToCram {
   }
 
   command <<<
-    set -e
-    set -o pipefail
+    set -e -o pipefail
     samtools --version | grep "^samtools" > version.txt
     if [ ~{stub} == "true" ]; then
       touch ~{output_basename}.cram \
