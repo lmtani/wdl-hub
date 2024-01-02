@@ -1,0 +1,7 @@
+{
+    "input_bam": "alignment.bam",
+    "ref_fasta": "reference.fasta",
+    "ref_fasta_index": "reference.fasta.fai",
+    "output_basename": "basename",
+    "stub": true
+}

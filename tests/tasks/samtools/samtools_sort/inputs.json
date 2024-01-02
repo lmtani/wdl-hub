@@ -1,0 +1,5 @@
+{
+    "unsorted_alignment": "alignment.unsorted.bam",
+    "output_basename": "OUTPUT",
+    "stub": true
+}

@@ -1,0 +1,9 @@
+- name: Check if Sort produces the expected outputs
+  tags:
+  - bcftools
+  - bcftools/bcftools_sort
+  command: bash tests/tasks/bcftools/bcftools_sort/run.sh
+  files:
+  - path: _LAST/out/sorted_vcf/variants.sorted.vcf.gz
+  - path: _LAST/out/sorted_vcf_index/variants.sorted.vcf.gz.tbi
+  - path: _LAST/out/version/version.txt

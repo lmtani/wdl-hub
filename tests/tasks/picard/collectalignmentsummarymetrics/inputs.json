@@ -1,0 +1,7 @@
+{
+    "alignment": "alignment.cram",
+    "alignment_index": "alignment.cram.crai",
+    "reference_fasta": "reference.fasta",
+    "reference_fasta_index": "reference.fasta.fai",
+    "stub": true
+}

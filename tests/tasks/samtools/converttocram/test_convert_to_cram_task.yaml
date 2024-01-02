@@ -1,0 +1,10 @@
+- name: Check if ConvertToCram produces the expected outputs
+  tags:
+  - samtools
+  - samtools/converttocram
+  command: bash tests/tasks/samtools/converttocram/run.sh
+  files:
+  - path: _LAST/out/output_cram/basename.cram
+  - path: _LAST/out/output_cram_index/basename.cram.crai
+  - path: _LAST/out/output_cram_md5/basename.cram.md5
+  - path: _LAST/out/version/version.txt

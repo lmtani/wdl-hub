@@ -1,0 +1,18 @@
+{
+    "reference_genome": "reference.fasta",
+    "reference_genome_index": [
+        "reference.fasta.fai",
+        "reference.fasta.amb",
+        "reference.fasta.ann",
+        "reference.fasta.bwt",
+        "reference.fasta.pac",
+        "reference.fasta.sa"
+    ],
+    "fastq_r1": "reads_1.fastq.gz",
+    "fastq_r2": "reads_2.fastq.gz",
+    "technology": "Illumina",
+    "library": "B001",
+    "sample_name": "PATHOGEN",
+    "sample_id": "A",
+    "stub": true
+}

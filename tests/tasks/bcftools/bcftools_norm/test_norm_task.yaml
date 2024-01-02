@@ -1,0 +1,9 @@
+- name: Check if Norm produces the expected outputs
+  tags:
+  - bcftools
+  - bcftools/bcftools_norm
+  command: bash tests/tasks/bcftools/bcftools_norm/run.sh
+  files:
+  - path: _LAST/out/norm_vcf/variants.norm.vcf.gz
+  - path: _LAST/out/norm_vcf_index/variants.norm.vcf.gz.tbi
+  - path: _LAST/out/version/version.txt

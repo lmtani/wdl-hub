@@ -1,0 +1,12 @@
+- name: Check if MakeBwaIndex produces the expected outputs
+  tags:
+  - bwa
+  - bwa/bwaindex
+  command: bash tests/tasks/bwa/bwaindex/run.sh
+  files:
+  - path: _LAST/out/bwa_index/0/reference.fasta.amb
+  - path: _LAST/out/bwa_index/1/reference.fasta.ann
+  - path: _LAST/out/bwa_index/2/reference.fasta.bwt
+  - path: _LAST/out/bwa_index/3/reference.fasta.pac
+  - path: _LAST/out/bwa_index/4/reference.fasta.sa
+  - path: _LAST/out/version/version.txt

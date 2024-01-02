@@ -1,0 +1,12 @@
+- name: Check if MarkDuplicates produces the expected outputs
+  tags:
+  - picard
+  - picard/markduplicates
+  command: bash tests/tasks/picard/markduplicates/run.sh
+  files:
+  - path: _LAST/out/output_bam/MERGED.bam
+  - path: _LAST/out/metrics/MERGED_metrics.txt
+  - path: _LAST/out/version/version.txt
+  - path: _LAST/outputs.json
+    contains:
+    - '"MarkDuplicates.duplicates": 0.0'

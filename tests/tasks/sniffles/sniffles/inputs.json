@@ -1,0 +1,8 @@
+{
+    "alignment": "alignment.bam",
+    "alignment_index": "alignment.bam.bai",
+    "reference": "reference.fasta",
+    "reference_index": "reference.fasta.fai",
+    "genotype_ploidy": 2,
+    "stub": true
+}
