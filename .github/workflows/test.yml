@@ -1,4 +1,4 @@
-name: Test and Release
+name: Test
 permissions:
   id-token: "write"
   contents: "write"
