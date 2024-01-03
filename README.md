@@ -41,7 +41,7 @@ bash install.sh
 To import a task, add the following line to the top of your WDL file:
 
 ```wdl
-import "wdl-hub/tasks/<module-name>.wdl" as a_name
+import "relative-path/to/wdl-hub/tasks/<module-name>.wdl" as a_name
 ```
 
 Then you can use the task in your WDL workflow:
