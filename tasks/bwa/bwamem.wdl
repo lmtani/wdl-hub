@@ -5,15 +5,12 @@ task BwaMem {
     input {
         File reference_genome
         Array[File] reference_genome_index
-
         File fastq_r1
         File fastq_r2
-
         String technology
         String library
         String sample_name
         String sample_id
-
         Boolean stub = false
     }
 
