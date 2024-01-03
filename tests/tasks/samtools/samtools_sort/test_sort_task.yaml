@@ -1,4 +1,4 @@
-- name: Check if Sort produces the expected outputs
+- name: Check if Samtools Sort produces the expected outputs
   tags:
   - samtools
   - samtools/samtools_sort
