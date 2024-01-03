@@ -1,0 +1,88 @@
+name: Test and Release
+permissions:
+  id-token: "write"
+  contents: "write"
+  packages: "write"
+  pull-requests: "read"
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '*'
+    paths:
+      - '**/*.wdl'
+
+jobs:
+
+  changed:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Get changed file names
+        id: set-matrix
+        run: |
+          changed_files_tags=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | sed -n '/^tasks\/.*\.wdl$/s|^tasks/||; s|\.wdl$||p')
+          if [[ -z "$changed_files_tags" ]]; then
+            echo "matrix=[]" >> $GITHUB_OUTPUT
+          else
+            matrix_json=$(echo "$changed_files_tags" | tr '\n' ' ' | jq -M -R -c 'split(" ") | map(select(. != ""))')
+            echo $matrix_json
+            echo "matrix=$matrix_json" >> $GITHUB_OUTPUT
+          fi
+        shell: bash -eo pipefail {0}
+
+  test:
+    runs-on: ubuntu-latest
+    if: ${{ needs.changed.outputs.matrix != '[]' }}
+    needs: changed
+    strategy:
+      fail-fast: false
+      matrix:
+        tag: ${{fromJson(needs.changed.outputs.matrix)}}
+    services:
+      docker:
+        image: docker:19.03.12
+        options: --privileged
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
+
+      - name: Install Python dependencies
+        run: pip install -r tests/requirements.txt
+
+      - name: Run test ${{ matrix.tag }}
+        run: pytest --git-aware --tag ${{ matrix.tag }} --kwd --basetemp /tmp/ci tests/tasks
+
+      - name: Prepare artifact name
+        id: prepare_artifact_name
+        run: |
+          # This will replace slashes with dashes
+          safe_artifact_name=$(echo "${{ matrix.tag }}" | sed 's:/:-:g')
+          echo "safe_artifact_name=$safe_artifact_name" >> $GITHUB_ENV
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ env.safe_artifact_name }}-command
+          path: |
+            /tmp/ci/**/command
+            /tmp/ci/**/*.err
+            /tmp/ci/**/*.out
